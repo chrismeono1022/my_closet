@@ -1,0 +1,9 @@
+*.pyc
+*.pyo
+flask
+env
+seed_data
+.vagrant
+vagrant
+
+
