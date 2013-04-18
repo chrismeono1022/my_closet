@@ -2,19 +2,19 @@ from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, Text, String
 
-from sqlalchemy.orm import sessionmaker, relationship, backref
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
-ENGINE = None
-Session = None
-
-
-# investigate - what this is doing? 
-Base = declarative_base()
 
 # create engine connection
-# engine = create_engine('postgresql://localhost:5432/my_closet', echo=True)
+engine = create_engine('postgresql://localhost:5432/my_closet', echo=True)
+session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
-# using SQLAlchemy default __init__ which allows for use of kwargs e.g. first = "alby", last = "meono", email = "alby(at)gmail.com"etc.
+
+Base = declarative_base()
+Base.query = session.query_property()
+
+
+# using SQLAlchemy default __init__ which allows for use of kwargs e.g. first = "alby", last = "meono", etc.
 class User(Base):
 	__tablename__ = "users"
 
@@ -25,6 +25,7 @@ class User(Base):
 	password = Column(String(120), nullable = False)
 	location = Column(Text, nullable=False)
 
+
 class Item(Base):
 	__tablename__ = "items" # clothing items 
 
@@ -32,21 +33,23 @@ class Item(Base):
 	user_id = Column(Integer, ForeignKey('users.id'))
 	name = Column(String(200), nullable = False) # name your item 
 	type = Column(String(200), nullable = False) # e.g. bottoms, tops, dress
-	tag = Column(String(200), nullable = True) # e.g. bohemian, casual
+	style = Column(String(200), nullable = True) # e.g. bohemian, casual
 	image_url = Column(Text, nullable = False)
 	color = Column(String(200), nullable = True)
 	item_rating = Column(Integer, nullable = True)
 
 	user = relationship("User", backref=backref("items", order_by=id))
 
+
 class Outfit(Base):
 	__tablename__ = "outfits" # previously suggested outfits
 
 	id = Column(Integer, primary_key = True)
 	user_id = Column(Integer, ForeignKey('users.id'))
-	top_id = Column(Integer, ForeignKey('items.id'), nullable=True, )
+	top_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	bottom_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	dress_id = Column(Integer, ForeignKey('items.id'), nullable=True)
+	outerwear_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	shoes_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	jewelry_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	accessories_id = Column(Integer, ForeignKey('items.id'), nullable=True)
@@ -55,8 +58,8 @@ class Outfit(Base):
 	# reference class name then relationship table name
 	user = relationship("User", backref=backref("outfits", order_by=id)) 
 
-
 	# since they are now methods call as such e.g. --> outfit.top 
+	# creating manual relationships where ORM fails
 	@property
 	def top(self):
 		return session.query(Item).get(self.top_id)
@@ -68,6 +71,10 @@ class Outfit(Base):
 	@property
 	def dress(self):
 		return session.query(Item).get(self.dress_id)
+
+	@property
+	def outerwear(self):
+		return session.query(Item).get(self.outerwear_id)
 
 	@property
 	def shoes(self):
@@ -82,19 +89,14 @@ class Outfit(Base):
 		return session.query(Item).get(self.accessories_id)
 
 
-def connect():
-	global ENGINE 
-	global Session
-
-	ENGINE = create_engine('postgresql://localhost:5432/my_closet', echo=True)
-	Session = sessionmaker(bind=ENGINE)
-
-	return Session() 
+def create_db():
+	Base.metadata.create_all(engine)
 
 
 def main():
 	"""In case we need this for something"""
 	pass
+
 
 if __name__ == "__main__":
 	print "we are in model.py"
