@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, Text, String
+from sqlalchemy import Column, Integer, Text, String, Boolean
 
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
@@ -33,10 +33,16 @@ class Item(Base):
 	user_id = Column(Integer, ForeignKey('users.id'))
 	name = Column(String(200), nullable = False) # name your item 
 	type = Column(String(200), nullable = False) # e.g. bottoms, tops, dress
-	style = Column(String(200), nullable = True) # e.g. bohemian, casual
+	style = Column(String(200), nullable = True) # e.g. bohemian, casual, beach wear
 	image_url = Column(Text, nullable = False)
 	color = Column(String(200), nullable = True)
 	item_rating = Column(Integer, nullable = True)
+	# info about exceptional weather conditions to collect
+	rain = Column(Boolean, nullable=True)
+	heat = Column(Boolean, nullable=True)
+	snow = Column(Boolean, nullable=True)
+	low_temp = Column(Integer, nullable = True)
+	high_temp = Column(Integer, nullable = True)
 
 	user = relationship("User", backref=backref("items", order_by=id))
 
@@ -46,6 +52,7 @@ class Outfit(Base):
 
 	id = Column(Integer, primary_key = True)
 	user_id = Column(Integer, ForeignKey('users.id'))
+	outfit_name = Column(String(200), nullable = True)
 	top_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	bottom_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	dress_id = Column(Integer, ForeignKey('items.id'), nullable=True)
@@ -58,8 +65,8 @@ class Outfit(Base):
 	# reference class name then relationship table name
 	user = relationship("User", backref=backref("outfits", order_by=id)) 
 
+	# creating manual relationships where ORM relationship isn't adequate
 	# since they are now methods call as such e.g. --> outfit.top 
-	# creating manual relationships where ORM fails
 	@property
 	def top(self):
 		return session.query(Item).get(self.top_id)
