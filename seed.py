@@ -54,7 +54,7 @@ def load_outfits(session):
 			print row
 			id = row[0]
 			user_id = row[1]
-			outfit_name = row[2]
+			name = row[2]
 			top_id = row[3]
 			bottom_id = row[4]
 			dress_id = row[5]
@@ -62,9 +62,8 @@ def load_outfits(session):
 			shoes_id = row[7]
 			jewelry_id = row[8]
 			accessories_id = row[9]
-			outfit_rating = row[10]
 
-			c = model.Outfit(id=id, user_id=user_id, outfit_name=outfit_name, top_id=top_id, bottom_id=bottom_id, dress_id=dress_id, outerwear_id = outerwear_id, shoes_id=shoes_id, jewelry_id=jewelry_id, accessories_id=accessories_id, outfit_rating=outfit_rating)
+			c = model.Outfit(id=id, user_id=user_id, name=name, top_id=top_id, bottom_id=bottom_id, dress_id=dress_id, outerwear_id = outerwear_id, shoes_id=shoes_id, jewelry_id=jewelry_id, accessories_id=accessories_id)
 			session.add(c)
 		session.commit()	
 

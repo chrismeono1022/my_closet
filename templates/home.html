@@ -3,13 +3,14 @@
 	<p> Your location is {{location}} </p>
 
 <p> Here's an outfit for you: </p>
-<ul>
-{% for outfit in outfits %}
-
-		<li> {{outfit.outfit_name}} </li>
-		<li> {{outfit.id}}</li>
-
-{% endfor %}
-</ul>
+<!-- outift 1 -->
+	<div id="container">
+		<img src="{{top}}" id="img1">
+		<img src="{{bottoms}}" id="img2">
+		<img src="{{outer}}">
+		<img src="{{shoes}}">
+		<img src="{{jewelry}}">
+		<img src="{{accessories}}">
+	</div>
 
 </html>

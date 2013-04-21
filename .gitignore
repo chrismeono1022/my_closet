@@ -1,8 +1,8 @@
 *.pyc
 *.pyo
 env
-seed_data
 .vagrant
 vagrant
 .gitignore
 .DS_Store
+item_pics

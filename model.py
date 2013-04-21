@@ -52,15 +52,14 @@ class Outfit(Base):
 
 	id = Column(Integer, primary_key = True)
 	user_id = Column(Integer, ForeignKey('users.id'))
-	outfit_name = Column(String(200), nullable = True) #change to name
+	name = Column(String(200), nullable = True)
 	top_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	bottom_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	dress_id = Column(Integer, ForeignKey('items.id'), nullable=True)
 	outerwear_id = Column(Integer, ForeignKey('items.id'), nullable=True)
-	shoes_id = Column(Integer, ForeignKey('items.id'), nullable=True) #not nullable - update
-	jewelry_id = Column(Integer, ForeignKey('items.id'), nullable=True) #not nullable - update
-	accessories_id = Column(Integer, ForeignKey('items.id'), nullable=True) #not nullable - update
-	outfit_rating = Column(Integer, nullable=True) #remove this column
+	shoes_id = Column(Integer, ForeignKey('items.id'), nullable=False)
+	jewelry_id = Column(Integer, ForeignKey('items.id'), nullable=False)
+	accessories_id = Column(Integer, ForeignKey('items.id'), nullable=False)
 
 	# reference class name then relationship table name
 	user = relationship("User", backref=backref("outfits", order_by=id)) 
