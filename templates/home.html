@@ -1,0 +1,15 @@
+<html>
+	<p> The temp is {{temp}} </p>
+	<p> Your location is {{location}} </p>
+
+<p> Here's an outfit for you: </p>
+<ul>
+{% for outfit in outfits %}
+
+		<li> {{outfit.outfit_name}} </li>
+		<li> {{outfit.id}}</li>
+
+{% endfor %}
+</ul>
+
+</html>
