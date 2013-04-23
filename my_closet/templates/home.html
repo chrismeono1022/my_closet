@@ -1,0 +1,20 @@
+<html>
+
+		<p> The temp is {{temp}} </p>
+	<p> Your location is {{location}} </p>
+
+	<p> Here are your matches for today: </p>
+
+{% for outfit in outfits %}
+
+	{% for item in outfit %}
+
+		{{item.name}} <img src="{{item.image_url}}" width="100"/>
+	
+	{% endfor %} <hr>
+
+{% endfor %}
+
+
+
+</html>

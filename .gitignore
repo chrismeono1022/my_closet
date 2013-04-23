@@ -1,8 +1,7 @@
 *.pyc
 *.pyo
 env
-.vagrant
-vagrant
 .gitignore
 .DS_Store
 item_pics
+my_closet.egg-info
