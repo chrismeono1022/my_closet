@@ -64,4 +64,3 @@ class Outfit(Base):
     
 if __name__ == "__main__":
     print "we are in model.py"
-    main()

@@ -79,7 +79,7 @@ def main(argv=sys.argv):
     Base.metadata.drop_all(engine)
     Base.metadata.create_all(engine)
 
-    genereate_default_data()
+    generate_default_data()
 
 if __name__ == '__main__':
     main()
