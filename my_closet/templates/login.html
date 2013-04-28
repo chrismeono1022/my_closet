@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br>
+<h1 align="center">
+    Welcome to MyCloset!
+</h1><br>
+
+<form method="POST" action="/login" align="center">
+    <div>{{ form.email.label }} {{ form.email }}</div>
+    <div>{{ form.password.label }} {{ form.password }}</div>
+    <input type="submit" value="Sign in" class="btn">
+</form>
+
+{% endblock %}

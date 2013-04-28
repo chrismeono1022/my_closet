@@ -748,12 +748,13 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 10px 0;
+  margin: 0px 0;
   font-family: inherit;
   font-weight: bold;
   line-height: 20px;
   color: inherit;
   text-rendering: optimizelegibility;
+  padding-left: 20px;
 }
 
 h1 small,
@@ -1035,7 +1036,7 @@ pre code {
 }
 
 form {
-  margin: 0 0 20px;
+  margin: 10px 10px 20px;
 }
 
 fieldset {
@@ -6137,6 +6138,7 @@ a.badge:focus {
   line-height: 1;
   letter-spacing: -1px;
   color: inherit;
+  padding-left: 20px;
 }
 
 .hero-unit li {

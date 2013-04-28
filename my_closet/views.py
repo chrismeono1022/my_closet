@@ -1,28 +1,55 @@
-from flask import render_template
+from flask import render_template, session, request, flash, redirect, url_for, g
 from my_closet import app
 from my_closet.models import Item #user, outfit
 from my_closet.models import DBSession
+from my_closet.forms import Login
 from geopy import geocoders
 import requests
 import random
 import os
 
-# api key stored as environment variable
-FORECAST_IO = os.environ.get('forecast_io')
 
-@app.route("/")
-def index():
+# app.secret_key = str(app.config['secret_key'])
+
+@app.route("/", methods=["GET", "POST"])
+def root():
+
+    form = Login()
+    return render_template("login.html", form=form)
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+
+    email = form.email.data
+    password = form.password.data
+
+    try:
+        user = DBSession.query(User).filter_by(email=email).one() #, password=password
+
+    except:
+        flash("Invalid username or password", "error")
+        return render_template("login.html")
+
+    session['user_id'] = user.id
+    return render_template("home.html")
+
+
+
+@app.route("/home")
+def home():
 
     #query user location, based on user_id
     #user_id=acquire from user session
     #location = DBSession.query(User).filter_by(id=user_id)
     location = 90291
     # g = geocoders.GoogleV3()
-    # place,(lat, lng) = g.geocode(test_location) #change to location
-    # r = requests.get("https://api.forecast.io/forecast/"+str(FORECAST_IO)+"/" + str(lat) + "," + str(lng))
+    # place,(lat, lng) = g.geocode(location) #change to location
+    # url = ("https://api.forecast.io/forecast/"+str(app.config['forecast_io'])+"/" + str(lat) + "," + str(lng))
+    # r = requests.get(url)
     # temp_json = r.json()
     # temp = temp_json['currently']['temperature']
-    temp = 66
+    temp = 46 #random.randint(0, 100)
 
 
     items = DBSession.query(Item).filter(Item.low_temp<temp, Item.high_temp>temp)
@@ -73,9 +100,8 @@ def index():
 
         outfits.append(outfit_items) # append to list outside loop
 
-        outfit_1 = outfits[0]
-        outfits_2 = outfits[1]
-        outfits = outfits[2]
-
 
     return render_template("home.html", temp=temp, location=location, outfits=outfits)
+
+
+

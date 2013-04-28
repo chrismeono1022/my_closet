@@ -1,36 +1,26 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block body %}
 
 	<h3>The temp is {{temp}}</h3>
     <h3>Your location is {{location}}</h3>
 
 	<p> Here are your matches for today: </p>
 
-    <p>print {{outfits[0][0].name}}</p>
-
-    <body>
-
-        <div class="row-fluid">
-
         {% for outfit in outfits %}
-
+        <div class="row-fluid">
             <div class="span10">
 
             {% for item in outfit %}
-               
-                {{item.name}} <img src="{{item.image_url}}" width="150"/>
-                
-            {% endfor %} <hr>
-
+            <div class="span2">
+                <img src="{{item.image_url}}" width="150"/><br>
+                <div align="center">{{item.name}}</div> 
+            </div>
+            {% endfor %} 
             </div>
 
+        </div>
+        <hr>
         {% endfor %}
 
-        </div>
-
-    </body>
-
-    <script rel="stylesheet" href="static/css/bootstrap.css" type="text/css"></script>
-
-    <script type="text/javascript" src="static/js/jquery.min.map.js"></script>
-
-</html>
+{% endblock %}
