@@ -4,7 +4,7 @@
 
     <div class="navbar navbar-inverse">
         <div class="navbar-inner">
-        <a class="home_brand">Wear What When</a>
+        <a class="home_brand">Wear What When...</a>
             <ul class="nav pull-right">
                 <li><a href="#">My Closet</a></li>
             </ul>
@@ -12,44 +12,48 @@
     </div>
 
 
-    <div class="row-fluid">
-        <div class="span7" align="center"><h5>The current temperature is {{temp}} degrees</h5></div>
+<!--     Using this div for hero image -->
+    <div class="home_image" align="center"> 
 
-        <div class="span5" align="right"><h7>Your location is <br>{{location}}</h7></div>
+    <div class="row-fluid">
+        <div class="span3" align="center" style="padding-top:79px;"><p class="home_h6">The current temperature is <br>{{temp}} degrees</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">{{forecast}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">High<br>{{daily_high}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Low<br>{{daily_low}}</p></div>
+        <div class="span3" align="center" style="padding-top:79px"><p class="home_h6">Your location is <br>{{location}}</p></div>
+    </div>
+        <!--     closing hero tag -->
+    </div>
+
+
+    <br>
+    <div class="home_h6_black" align="center" style="padding-top:20px;"> Here are your matches for today: </div>
+    <br>
+
+    <div class="row-fluid">
+        <div class="span4" align="center"><p class="home_h6_black" style="padding-top:20px;">Outfit One</p></div>
+        <div class="span4" align="center"><p class="home_h6_black" style="padding-top:20px;" >Outfit Two</p></div>
+        <div class="span4" align="center"><p class="home_h6_black" style="padding-top:20px;">Outfit Three</p></div>
     </div>
 
     <br>
     <br>
-
+    
     <div class="row-fluid">
-        <div class="span4" align="center"><h7>Forecast<br>{{forecast}}</h7></div>
-        <div class="span4" align="center"><div><h7>High<br>{{daily_high}}</h7></div></div>
-        <div class="span4" align="center"><h7>Low<br>{{daily_low}}</h7></div>
-    </div>
-
-    <br>
-    <br>
-
-	<p align="center"> Here are your matches for today: </p>
-
-    <br>
-
-        <div class="row-fluid">
-
-        {% for outfit in outfits %}
-
-            <div class="span4">
-
-            {% for item in outfit %}
-
-                <img src="{{item.image_url}}" width="150"/><br>
-                <div align="center">{{item.name}} </div>
-            
-            {% endfor %} 
+    {% for outfit in outfits %}
+        <div class="span4" align="center">
+            <div class="home_outfits">
+                {% for item in outfit %}
+                    <img src="{{item.image_url}}" height="35"  width="110" />
+                    <br>
+                    <br>
+                    <div align="center">{{item.name}} </div>
+                    <br>
+                {% endfor %}
             </div>
-
-        {% endfor %}
-
         </div>
+    {% endfor %}
+    </div>
+
 
 {% endblock %}

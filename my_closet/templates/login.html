@@ -1,4 +1,4 @@
-<body class="homepage_body">
+<body class="login_body">
 
 {% extends "base.html" %}
 
@@ -7,14 +7,16 @@
     <br>
     <br>
 
-    <div class="homepage_h1" align="center"> Welcome to Wear What When </div>
+    <div class="login_h1" align="center"> Welcome to Wear What When </div>
+
+    <div></div>
 
     <br>
 
     {% for message in get_flashed_messages() %}
 
-        <div>
-            <div class="alert alert-warning" align="center">{{ message }}</div>
+        <div align="center">
+            <div class="alert" align="center">{{ message }}</div>
         </div>
 
     {% endfor %}
@@ -22,9 +24,9 @@
     <form action="/login" method="POST" align="center">
         {{ form.hidden_tag() }}
         {{ form.csrf_token }}
-        <div class="h6_homepage">{{ form.email.label }} {{ form.email() }}</div>
-        <div class="h6_homepage">{{ form.password.label }} {{ form.password() }}</div>
-        <input type="submit" value="Sign in" class="home_btn">
+        <div class="h6_login">{{ form.email.label }} {{ form.email() }}</div>
+        <div class="h6_login">{{ form.password.label }} {{ form.password() }}</div>
+        <input type="submit" value="Sign in" class="login_btn">
     </form>
 
 {% endblock %}
