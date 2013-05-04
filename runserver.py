@@ -22,4 +22,7 @@ if __name__ == "__main__":
     engine = engine_from_config(app.config['SQLALCHEMY'], prefix='')
     DBSession.configure(bind=engine)
 
+    #'forecast_io' is env variable for api key
+    app.config['forecast_io'] = os.environ.get('forecast_io')
+
     app.run()
