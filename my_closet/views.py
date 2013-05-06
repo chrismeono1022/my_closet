@@ -15,13 +15,12 @@ app.secret_key = 'development_key'
 def before_request():
 
     if not request.path.startswith("/static"):
-        print "winning!"
 
         try:
             g.user = DBSession.query(User).filter_by(id=session.get('user_id')).one()
 
-            print "session %s" % session['user_id']
-            print "g.user is %s" % g.user.email
+            # print "session %s" % session['user_id']
+            # print "g.user is %s" % g.user.email
         except Exception:
             print Exception
 
@@ -54,36 +53,37 @@ def login():
         flash("Invalid username or password", "error")
         return render_template("login.html", form=form)
 
-@app.route("/logout")
-def logout():
-    del session['user_id']
-    return redirect(url_for("root"))
 
 
 @app.route("/home")
 def home():
     user_location = DBSession.query(User).filter_by(email=g.user.email).one()
-    print "user_location is %s" % user_location
-    # location = user_location.location
-    # g = geocoders.GoogleV3()
-    # place,(lat, lng) = g.geocode(location) #change to location
-    # url = ("https://api.forecast.io/forecast/"+str(app.config['forecast_io'])+"/" + str(lat) + "," + str(lng))
-    # r = requests.get(url)
-    # temp_json = r.json()
-    # temp = temp_json['currently']['temperature']
-    # icon = temp_json['currently']['icon']
-    # forecast = temp_json['currently']['summary']
-    # daily_low = temp_json['daily']['data'][0]['temperatureMin']
-    # daily_high = temp_json['daily']['data'][0]['temperatureMax']
-    # place = temp_json['timezone']
-    location = "Los Angeles, CA"
-    temp = 64 #random.randint(0, 100)
-    forecast = 'Clear all day'
-    daily_low = 50
-    daily_high = 64
+    location = user_location.location
+    geo = geocoders.GoogleV3()
+    place,(lat, lng) = geo.geocode(location) #change to location
+    url = ("https://api.forecast.io/forecast/"+str(app.config['forecast_io'])+"/" + str(lat) + "," + str(lng))
+    r = requests.get(url)
+    temp_json = r.json()
+    temp = temp_json['currently']['temperature']
+    icon = temp_json['currently']['icon']
+    forecast = temp_json['currently']['summary']
+    daily_low = temp_json['daily']['data'][0]['temperatureMin']
+    daily_high = temp_json['daily']['data'][0]['temperatureMax']
+    place = temp_json['timezone']
+    # location = "San Francisco, CA"
+    # temp = random.randint(55, 70)
+    # forecast = 'Clear all day'
+    # daily_low = 55
+    # daily_high = 65
+    session['location']=place
+    session['forecast']=forecast
+    session['daily_low']=round(daily_low)
+    session['daily_high']=round(daily_high)
+    session['current']=round(temp)
 
 
-    items = DBSession.query(Item).filter(Item.low_temp<temp, Item.high_temp>temp).filter_by(user_id=g.user.id).all()
+    items = DBSession.query(Item).filter(Item.low_temp<session.get('current'), Item.high_temp>session.get('current')).filter_by(user_id=g.user.id).all()
+
 
     #organize items by type e.g. shoes, tops, bottoms, etc
     items_by_type = {}
@@ -135,4 +135,16 @@ def home():
         outfits.append(outfit_items) # append to list outside loop
 
 
-    return render_template("home.html", temp=temp, location=location, outfits=outfits, forecast=forecast, daily_high=daily_high, daily_low=daily_low,)
+    return render_template("home.html", outfits=outfits, location=session.get('location'), forecast=session.get('forecast'), daily_high=session.get('daily_high'), daily_low=session.get('daily_low'), temp=session.get('current'))
+
+@app.route("/logout")
+def logout():
+    del session['user_id']
+    return redirect(url_for("root"))
+
+
+@app.route("/my_closet", methods=['GET'])
+def my_closet():
+    items = DBSession.query(Item).filter_by(user_id=g.user.id).all()
+
+    return render_template("my_closet.html", items=items, location=session.get('location'), forecast=session.get('forecast'), daily_high=session.get('daily_high'), daily_low=session.get('daily_low'), temp=session.get('current'))

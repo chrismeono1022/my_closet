@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+        <a class="home_brand">Wear What When...</a>
+            <ul class="nav pull-right">
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li><a href="{{url_for('logout')}}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+<!--     Using this div for hero image -->
+    <div class="home_image" align="center"> 
+
+    <div class="row-fluid">
+        <div class="span3" align="center" style="padding-top:79px;"><p class="home_h6">Current Temperature<br>{{temp}} degrees</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Forecast <br> {{forecast}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Today's High<br>{{daily_high}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Today's Low<br>{{daily_low}}</p></div>
+        <div class="span3" align="center" style="padding-top:79px"><p class="home_h6">Your location is <br>{{location}}</p></div>
+    </div>
+        <!--     closing hero tag -->
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div id="myCarousel" class="carousel slide">
+<!--       <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+      </ol> -->
+      <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item" align="center">
+                <img src="http://s20.postimg.org/6609d7iak/girl_wide.jpg" height="250px">
+                <br>
+                <br>
+                <div class="home_h6_black">My Closet Items</div>
+            </div>
+                {% for item in items %}
+                        <div class="item" align="center">
+                            <img align="center" src="{{item.image_url}}" height="250px"/>
+                                <br>
+                                <br>
+                            <div align="center">{{item.name}} </div>
+                        </div>
+                {% endfor %}     
+        </div>
+
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+
+{% endblock %}
+
+<script type="text/javascript">
+    $('.carousel').carousel({
+            interval: 3000
+    })
+</script>

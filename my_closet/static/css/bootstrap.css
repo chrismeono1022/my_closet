@@ -128,9 +128,18 @@ text-decoration: none;
   color: white;
   text-rendering: optimizelegibility;
   padding-left: 20px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
+.home_h6_black_main {
+  margin: 0px 0;
+  font-family: inherit;
+  line-height: 20px;
+  color: #5E5E5E;
+  text-rendering: optimizelegibility;
+  padding-left: 20px;
+  font-size: 20px;
+}
 
 .home_h6_black {
   margin: 0px 0;
@@ -141,7 +150,6 @@ text-decoration: none;
   padding-left: 20px;
   font-size: 16px;
 }
-
 
 /*Default Bootstrap Below*/
 
@@ -235,10 +243,12 @@ sub {
   bottom: -0.25em;
 }
 
+
 img {
   width: auto\9;
-  height: auto;
-  max-width: 100%;
+/*  height: auto;
+  max-width: 100%;*/
+  text-align: center;
   vertical-align: middle;
   border: 0;
   -ms-interpolation-mode: bicubic;
@@ -6112,10 +6122,12 @@ a.badge:focus {
   position: relative;
   width: 100%;
   overflow: hidden;
+  vertical-align: middle;
 }
 
 .carousel-inner > .item {
   position: relative;
+  vertical-align: middle;
   display: none;
   -webkit-transition: 0.6s ease-in-out left;
      -moz-transition: 0.6s ease-in-out left;

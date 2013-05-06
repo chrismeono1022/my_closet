@@ -6,7 +6,7 @@
         <div class="navbar-inner">
         <a class="home_brand">Wear What When...</a>
             <ul class="nav pull-right">
-                <li><a href="#">My Closet</a></li>
+                <li><a href="{{url_for('my_closet')}}">My Closet</a></li>
                 <li><a href="{{url_for('logout')}}">Logout</a></li>
             </ul>
         </div>
@@ -17,10 +17,10 @@
     <div class="home_image" align="center"> 
 
     <div class="row-fluid">
-        <div class="span3" align="center" style="padding-top:79px;"><p class="home_h6">The current temperature is <br>{{temp}} degrees</p></div>
-        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">{{forecast}}</p></div>
-        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">High<br>{{daily_high}}</p></div>
-        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Low<br>{{daily_low}}</p></div>
+        <div class="span3" align="center" style="padding-top:79px;"><p class="home_h6">Current Temperature<br>{{temp}} degrees</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Forecast <br> {{forecast}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Today's High<br>{{daily_high}}</p></div>
+        <div class="span2" align="center" style="padding-top:79px"><p class="home_h6">Today's Low<br>{{daily_low}}</p></div>
         <div class="span3" align="center" style="padding-top:79px"><p class="home_h6">Your location is <br>{{location}}</p></div>
     </div>
         <!--     closing hero tag -->
@@ -28,8 +28,11 @@
 
 
     <br>
-    <div class="home_h6_black" align="center" style="padding-top:20px;"> Here are your matches for today: </div>
-    <br>
+    <div class="row-fluid">
+        <div class="span4" align="center"><p class="home_h6_black_main" style="padding-top:20px; padding-left:0px;">Here are your matches for today: </p></div>
+        <div class="span4" align="left"></div>
+        <div class="span4" align="center" style="padding-top:20px; padding-left:25px;"><a class="login_btn" href="{{url_for('home')}}">New Outfits</a></p></div>
+    </div>
 
     <div class="row-fluid">
         <div class="span4" align="center"><p class="home_h6_black" style="padding-top:20px;">Outfit One</p></div>
@@ -45,7 +48,7 @@
         <div class="span4" align="center">
             <div class="home_outfits">
                 {% for item in outfit %}
-                    <img src="{{item.image_url}}" height="35"  width="110" />
+                    <img src="{{item.image_url}}" height="150"/>
                     <br>
                     <br>
                     <div align="center">{{item.name}} </div>
