@@ -75,7 +75,7 @@ def home():
     # forecast = 'Clear all day'
     # daily_low = 55
     # daily_high = 65
-    session['location']=place
+    session['location']=location
     session['forecast']=forecast
     session['daily_low']=round(daily_low)
     session['daily_high']=round(daily_high)

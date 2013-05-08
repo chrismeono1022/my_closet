@@ -1,0 +1,65 @@
+    id = Column(Integer, primary_key = True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    name = Column(String(200), nullable = False) # name your item 
+    type = Column(String(200), nullable = False) # e.g. bottoms, tops, dress
+    style = Column(String(200), nullable = True) # e.g. bohemian, casual, beach wear
+    image_url = Column(Text, nullable = False)
+    color = Column(String(200), nullable = True)
+    item_rating = Column(Integer, nullable = True)
+    rain = Column(Boolean, nullable=True)
+    heat = Column(Boolean, nullable=True)
+    snow = Column(Boolean, nullable=True)
+    low_temp = Column(Integer, nullable = True)
+    high_temp = Column(Integer, nullable = True)
+
+
+
+Brown Booties|shoes|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/58815_10102221644757916_588942577_n.jpg|brown|10|FALSE|FALSE|FALSE|45|68
+Black Booties|shoes|classic|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/602054_10102221638086286_1805152427_n.jpg|black|6|TRUE|FALSE|FALSE|40|65
+Cowboy Boots|shoes|bohemian|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/551388_10102221638285886_1712680824_n.jpg|brown|9|TRUE|FALSE|TRUE|35|68
+Tan Booties|shoes|classic|https://sphotos-b.xx.fbcdn.net/hphotos-snc6/p206x206/9998_10102221638814826_764258315_n.jpg|tan|6|FALSE|FALSE|FALSE|45|72
+Black Maxi Dress|dress|bohemian|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/540582_10102221638196066_1952952371_n.jpg|black|10|FALSE|TRUE|FALSE|60|90
+Chunky Grey Sweater|outerwear|classic|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/p206x206/62587_10102221638400656_2094886929_n.jpg|grey|10|TRUE|FALSE|TRUE|0|70
+Long Black Skirt|bottoms|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/p206x206/529471_10102221638101256_894549662_n.jpg|black|9|TRUE|FALSE|FALSE|50|68
+Black Leggings|bottoms|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/p206x206/537045_10102221638091276_2053913711_n.jpg|black|10|TRUE|FALSE|TRUE|0|70
+Denim Shorts|bottoms|casual|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/p206x206/558130_10102221638390676_214872187_n.jpg|denim|8|FALSE|TRUE|FALSE|65|100
+Pink Shorts|bottoms|casual|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/p206x206/536943_10102221638600256_521541556_n.jpg|denim|9|FALSE|TRUE|FALSE|65|100
+Grey Tank Top|top|casual|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/p206x206/15066_10102221638490476_466931428_n.jpg|grey|10|TRUE|TRUE|TRUE|0|100
+Black Tank Top|top|casual|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/p206x206/37055_10102221638495466_344220525_n.jpg|black|10|TRUE|TRUE|TRUE|0|100
+Cranberry Tank Top|top|casual|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/p206x206/164686_10102221638849756_1167960779_n.jpg|red|8|TRUE|TRUE|TRUE|0|100
+Coral Long Tank|top|casual|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/538049_10102221638590276_647129348_n.jpg|coral|8|TRUE|TRUE|TRUE|0|65
+Black Sunglasses|accessories|classic|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/p206x206/17205_10102221638250956_26500065_n.jpg|black|10|TRUE|TRUE|TRUE|0|100
+Feather Scarf|accessories|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/p206x206/552965_10102221638385686_879651789_n.jpg|cream|10|TRUE|FALSE|TRUE|0|70
+Thin Brown Belt|accessories|classic|https://sphotos-b.xx.fbcdn.net/hphotos-ash3/p206x206/522107_10102221638729996_159711291_n.jpg|brown|10|TRUE|TRUE|TRUE|0|100
+Kissing Birds Necklace|jewelry|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/p206x206/552841_10102221638505446_469906281_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+Star Earrings|jewelry|bohemian|https://sphotos-b.xx.fbcdn.net/hphotos-prn1/p206x206/531835_10102221638650156_1502701727_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+Aztec Print Skirt|bottoms|bohemian|https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-ash3/947100_10102261316465496_2128960067_n.jpg|print|10|FALSE|FALSE|FALSE|50|90
+Baseball Tee|top|casual|https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/248079_10102261316445536_44868470_n.jpg|multi-color|9|TRUE|FALSE|TRUE|50|68
+Black Beanie|Accessories|bohemian|https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-prn1/936798_10102261316450526_531639220_n.jpg|black|10|TRUE|FALSE|TRUE|0|60
+Black Leather Jacket|outerwear|bohemian|https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/945801_10102261316555316_2080214934_n.jpg|black|10|TRUE|FALSE|TRUE|0|55
+Black Rainbows|shoes|bohemian|https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn1/48029_10102261316590246_259820867_n.jpg|black|5|FALSE|TRUE|FALSE|70|100
+Black Button Up Shirt|top|classic|https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash4/482577_10102261316620186_2002512051_n.jpg|black|10|TRUE|FALSE|TRUE|0|68
+Black V Neck|top|classic|https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-snc6/190430_10102261316680066_1255943956_n.jpg|black|8|TRUE|FALSE|TRUE|0|65
+Blee Inara Bracelets|accessories|classic|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/942327_10102261316685056_797891338_n.jpg|Gold|10|TRUE|TRUE|TRUE|0|100
+Long Blue Skirt|bottoms|classic|https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-frc1/482594_10102261316754916_1128933642_n.jpg|blue|10|FALSE|TRUE|FALSE|60|89
+Dark Blue Jeans|bottoms|classic|https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-prn1/936422_10102261316774876_254551540_n.jpg|denim|6|TRUE|FALSE|TRUE|0|60
+Short Blue Skirt|bottoms|classic|https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash4/247585_10102261316794836_333623233_n.jpg|blue|10|FALSE|TRUE|FALSE|55|100
+Denim Shirt|top|classic|https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-prn1/923343_10102261316904616_606653137_n.jpg|denim|10|TRUE|FALSE|TRUE|0|69
+Eggplant Leggings|bottoms|classic|https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash3/395613_10102261316989446_2083936894_n.jpg|purple|10|TRUE|FALSE|TRUE|0|65
+Gold Skull Ring|accessories|classic|https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash4/321479_10102261316999426_1836791033_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+Grey Cardigan|outerwear|classic|https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-ash3/945493_10102261317029366_1531494398_n.jpg|grey|9|TRUE|FALSE|TRUE|0|67
+Grey Sandals|shoes|classic|https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash4/179122_10102261317074276_2131023081_n.jpg|grey|10|FALSE|TRUE|FALSE|65|100
+Long Bird Necklace|accessories|classic|https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-ash4/428589_10102261317737946_271860708_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+Low Tan Wedges|shoes|classic|https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/486802_10102261317742936_146914845_n.jpg|tan|10|FALSE|TRUE|FALSE|65|100
+Blue Leggings|bottoms|classic|https://sphotos-b.xx.fbcdn.net/hphotos-frc1/62636_10102261317747926_139980006_n.jpg|blue|10|TRUE|FALSE|TRUE|0|65
+Navy Toms|shoes|classic|https://sphotos-a.xx.fbcdn.net/hphotos-prn1/936991_10102261317847726_32563953_n.jpg|blue|7|FALSE|FALSE|FALSE|40|70
+Pink Plaid Button Up|top|bohemian|https://sphotos-a.xx.fbcdn.net/hphotos-ash3/934730_10102261317827766_1072030515_n.jpg|pattern|7|TRUE|FALSE|TRUE|0|67
+Polka Dot Dress|dress|classic|https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/941461_10102261317832756_1509588433_n.jpg|pattern|7|FALSE|TRUE|FALSE|60|80
+Startup Tshirt|top|casual|https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-ash4/375151_10102261317917586_1096692748_n.jpg|grey|10|TRUE|TRUE|TRUE|55|90
+Striped Dress|dress|classic|https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-prn1/603623_10102261317932556_910023631_n.jpg|pattern|6|FALSE|TRUE|FALSE|60|80
+Diamond Studs|accessories|classic|https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn1/943625_10102261317937546_773827863_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+Black|dress|classic|https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-prn1/943566_10102261318087246_1944627495_n.jpg|black|10|FALSE|TRUE|FALSE|60|90
+Tan Cardigan|outerwear|classic|https://fbcdn-sphotos-h-a.akamaihd.net/hphotos-ak-frc1/482477_10102261318107206_1991158210_n.jpg|tan|10|TRUE|FALSE|TRUE|0|67
+High Tan Wedges|shoes|classic|https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-prn1/48035_10102261318142136_379751911_n.jpg|tan|10|FALSE|TRUE|FALSE|65|100
+Gold Triangle Necklace|accessories|classic|https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-ash4/309899_10102261318216986_2092502517_n.jpg|gold|10|TRUE|TRUE|TRUE|0|100
+White V Neck|top|casual|https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-prn1/934880_10102261318221976_1230532640_n.jpg|white|10|TRUE|TRUE|TRUE|55|90
