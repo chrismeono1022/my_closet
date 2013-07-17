@@ -9,4 +9,3 @@ wsgiref==0.1.2
 geopy==0.95.1
 psycopg2==2.4.6
 requests
-pdb
