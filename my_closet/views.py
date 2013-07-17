@@ -8,6 +8,7 @@ from geopy import geocoders
 import requests
 import random
 import os
+import pdb
 
 app.secret_key = 'development_key'
 
@@ -57,11 +58,15 @@ def login():
 
 @app.route("/home")
 def home():
+    print os.environ['FORECASTIO']
     user_location = DBSession.query(User).filter_by(email=g.user.email).one()
     location = user_location.location
     geo = geocoders.GoogleV3()
     place,(lat, lng) = geo.geocode(location) #change to location
-    url = ("https://api.forecast.io/forecast/"+str(app.config['forecast_io'])+"/" + str(lat) + "," + str(lng))
+    # url = ("https://api.forecast.io/forecast/"+str(app.config['forecast_io'])+"/" + str(lat) + "," + str(lng))
+    # app.config['forecast_io']
+    url = ("https://api.forecast.io/forecast/"+str(os.environ['FORECASTIO'])+"/" + str(lat) + "," + str(lng))
+
     r = requests.get(url)
     temp_json = r.json()
     temp = temp_json['currently']['temperature']
@@ -70,12 +75,13 @@ def home():
     daily_low = temp_json['daily']['data'][0]['temperatureMin']
     daily_high = temp_json['daily']['data'][0]['temperatureMax']
     place = temp_json['timezone']
+    loc = place.split('/')[1]
     # location = "San Francisco, CA"
     # temp = random.randint(55, 70)
     # forecast = 'Clear all day'
     # daily_low = 55
     # daily_high = 65
-    session['location']=location
+    session['location']=loc
     session['forecast']=forecast
     session['daily_low']=round(daily_low)
     session['daily_high']=round(daily_high)

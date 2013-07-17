@@ -23,7 +23,7 @@
 
 .login_body{
   background-color: black;
-  background-image: url("http://s20.postimg.org/4oet1ndjw/model_wide.jpg");
+  background-image: url("/static/img/model_wide.jpg");
   height: 600px;
   background-repeat: no-repeat; 
   background-position: center;
@@ -111,11 +111,11 @@ text-decoration: none;
 }
 
 .home_image{
-  background-image: url("http://s20.postimg.org/k4stvaz4s/try_3_new.jpg");
+  background-image: url("/static/img/shoes2.png");
   background-repeat: no-repeat; 
   background-position: center;
   background-size: 100%;
-/*  opacity: 0.7;*/
+  opacity: 0.9;
   float: center;
   background-color: white;
   min-height: 200px;

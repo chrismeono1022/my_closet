@@ -6,3 +6,7 @@ env
 item_pics
 my_closet.egg-info
 test_models.py
+bin
+lib
+include
+.python
