@@ -134,7 +134,7 @@ def home():
             else: 
                 outfit_items.append(item) #append all other items
 
-        outfits.append(outfit_items) # append to list outside loop
+        outfits.append(outfit_items)
 
 
     return render_template("home.html", outfits=outfits, location=session.get('location'), forecast=session.get('forecast'), daily_high=session.get('daily_high'), daily_low=session.get('daily_low'), temp=session.get('current'))
