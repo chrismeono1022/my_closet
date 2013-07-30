@@ -112,10 +112,6 @@ def home():
         for i in range(len(items_by_type['dress'])):
             weighted_picker.append('dress')
 
-    # ["bottoms|"] * len(items_by_time['bottoms'])
-    # weighted_picker[0].split('|')
-
-
 
     outfits = [] #list is composed of [outfit_items] lists
 
